@@ -60,9 +60,9 @@ public class SplashActivity extends Activity {
 	private String mDesc;
 	private String mDownLoadUrl;
 	private ProgressBar mProgress;
-	private boolean cancelUpdate=false;
 	private int progress;
-	String target;
+	private String target;
+	private AlertDialog mDownloadDialog;
 	
 	private Handler handler=new Handler(){
 		public void handleMessage(Message msg) {
@@ -251,8 +251,9 @@ public class SplashActivity extends Activity {
 				enterHome();
 			}
 		});
-		builder.show();
-		// 现在文件
+		mDownloadDialog = builder.create();
+		mDownloadDialog.show();		
+		// 下载文件
 		downLoad();
 	}
 	/**
@@ -274,6 +275,7 @@ public class SplashActivity extends Activity {
 					if (current>=total){
 						// 下载完成
 						handler.sendEmptyMessage(DOWNLOAD_FINISH);
+						//mDownloadDialog.dismiss();
 					}
 				}
 				@Override
@@ -290,6 +292,7 @@ public class SplashActivity extends Activity {
 		}else{
 			Toast.makeText(SplashActivity.this, "找不到sd卡", 0).show();
 		}
+		
 	}
 	/**
 	 * 安装APK文件
