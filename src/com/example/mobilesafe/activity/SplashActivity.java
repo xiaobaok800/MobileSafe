@@ -283,7 +283,6 @@ public class SplashActivity extends Activity {
 					System.out.println("下载成功");
 					installApk();
 				}
-				
 				@Override
 				public void onFailure(HttpException arg0, String arg1) {
 					Toast.makeText(SplashActivity.this, "下载失败", 0).show();
