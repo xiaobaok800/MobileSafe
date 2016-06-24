@@ -1,6 +1,7 @@
 package com.example.mobilesafe.activity;
 
 import com.example.mobilesafe.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 

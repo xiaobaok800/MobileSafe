@@ -298,9 +298,17 @@ public class SplashActivity extends Activity {
 		Intent intent=new Intent(Intent.ACTION_VIEW);
 		intent.addCategory(intent.CATEGORY_DEFAULT);
 		intent.setDataAndType(Uri.parse("file://" + target), "application/vnd.android.package-archive");
-		startActivity(intent);
+		//startActivity(intent);
+		startActivityForResult(intent, 0);
 	}
-
+	/**
+	 * 如果用户取消安装的话,回调此方法
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		enterHome();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	/**
 	 * 进入主界面
 	 */
