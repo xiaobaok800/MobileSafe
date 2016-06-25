@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * ¶ÁÈ¡Á÷µÄ¹¤¾ßÀà
+ * è¯»å–æµçš„å·¥å…·ç±»
  * @author Administrator
  *
  */
 public class StreamUtil {
 	/**
-	 * ½«Á÷×ª»»³É×Ö·û´®
+	 * å°†æµè½¬æ¢æˆå­—ç¬¦ä¸²
 	 * @param in
 	 * @return
 	 * @throws IOException 

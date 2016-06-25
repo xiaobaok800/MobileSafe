@@ -2,10 +2,13 @@ package com.example.mobilesafe.activity;
 
 import com.example.mobilesafe.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -14,8 +17,8 @@ import android.widget.TextView;
 public class HomeActivity extends Activity {
 
 	private GridView gvHome;
-	private String[] mItems = new String[] { "ÊÖ»ú·ÀµÁ", "Í¨Ñ¶ÎÀÊ¿", "Èí¼ş¹ÜÀí", "½ø³Ì¹ÜÀí",
-			"Á÷Á¿Í³¼Æ", "ÊÖ»úÉ±¶¾", "»º´æÇåÀí", "¸ß¼¶¹¤¾ß", "ÉèÖÃÖĞĞÄ" };
+	private String[] mItems = new String[] { "æ‰‹æœºé˜²ç›—", "é€šè®¯å«å£«", "è½¯ä»¶ç®¡ç†", "è¿›ç¨‹ç®¡ç†",
+			"æµé‡ç»Ÿè®¡", "æ‰‹æœºæ€æ¯’", "ç¼“å­˜æ¸…ç†", "é«˜çº§å·¥å…·", "è®¾ç½®ä¸­å¿ƒ" };
 
 	private int[] mPics = new int[] { R.drawable.home_safe,
 			R.drawable.home_callmsgsafe, R.drawable.home_apps,
@@ -30,6 +33,19 @@ public class HomeActivity extends Activity {
 		
 		gvHome=(GridView)findViewById(R.id.gv_home);
 		gvHome.setAdapter(new HomeAdapter());
+		gvHome.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, 
+					int position, long id) {
+				switch (position) {
+				case 8:
+					Intent intent=new Intent(HomeActivity.this,SettingActivity.class);
+					startActivity(intent);
+					break;
+				}
+			}
+		});
 	}
 	
 	class HomeAdapter extends BaseAdapter{

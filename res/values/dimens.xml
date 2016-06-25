@@ -9,4 +9,14 @@
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_21">21sp</dimen>
     <dimen name="text_size_huge">18sp</dimen>
+    
+	<!-- 通用布局高度 -->
+    <dimen name="layout_height_50">50dp</dimen>
+    <dimen name="layout_height_70">70dp</dimen>
+    
+     <!-- 通用 margin -->
+    <dimen name="margin_5">5dp</dimen>
+    
+     <!-- 通用 padding -->
+    <dimen name="padding_5">5dp</dimen>
 </resources>
