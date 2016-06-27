@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -35,7 +36,9 @@ import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +66,10 @@ public class SplashActivity extends Activity {
 	private int progress;
 	private String target;
 	private AlertDialog mDownloadDialog;
-
+	private SharedPreferences sp;
+	private boolean autoUpdate;
+	private RelativeLayout rlSplash;
+	
 	private Handler handler=new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -95,7 +101,6 @@ public class SplashActivity extends Activity {
 		};
 	};
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -103,8 +108,21 @@ public class SplashActivity extends Activity {
 
 		tvVersion=(TextView)findViewById(R.id.tv_version);
 		tvVersion.setText("版本号"+getVersionName());
-		checkVersion();
+		rlSplash=(RelativeLayout)findViewById(R.id.rl_splash);
+		
+		sp = getSharedPreferences("config", MODE_PRIVATE);
+		autoUpdate = sp.getBoolean("auto_update", true);
+		if(autoUpdate){
+			checkVersion();
+		}else{
+			//延迟2秒后发送消息
+			handler.sendEmptyMessageDelayed(CODE_ENTER_HOME, 2000);
+		}
 
+		//渐变动画
+		AlphaAnimation anim=new AlphaAnimation(0.3f, 1f);
+		anim.setDuration(2000);
+		rlSplash.startAnimation(anim);
 	}
 
 	/**

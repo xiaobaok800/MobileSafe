@@ -8,12 +8,20 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+/**
+ * 自定义组合控件
+ * @author Administrator
+ *
+ */
 public class SettingItemView extends RelativeLayout{
 
+	private static final String NAMESPACE = "http://schemas.android.com/apk/res/com.example.mobilesafe";
 	private TextView tvSettingTitle;
 	private TextView tvSettingDesc;
 	private CheckBox cbUpdate;
+	private String title;
+	private String descOn;
+	private String descOff;
 
 	public SettingItemView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -23,6 +31,11 @@ public class SettingItemView extends RelativeLayout{
 	public SettingItemView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView();
+		//根据属性名称获取属性值
+		title = attrs.getAttributeValue(NAMESPACE, "title");
+		descOn = attrs.getAttributeValue(NAMESPACE, "desc_on");
+		descOff = attrs.getAttributeValue(NAMESPACE, "desc_off");
+		setTitle(title);
 	}
 
 	public SettingItemView(Context context) {
@@ -36,6 +49,7 @@ public class SettingItemView extends RelativeLayout{
 		tvSettingTitle = (TextView)findViewById(R.id.tv_setting_title);
 		tvSettingDesc = (TextView)findViewById(R.id.tv_setting_desc);
 		cbUpdate=(CheckBox)findViewById(R.id.cb_update);
+		
 	}
 	
 	public void setTitle(String title){
@@ -45,17 +59,23 @@ public class SettingItemView extends RelativeLayout{
 	public void setDesc(String desc){
 		tvSettingDesc.setText(desc);
 	}
-	
+	/**
+	 * 返回勾选状态
+	 * @return
+	 */
 	public boolean isChecked(){
-		return false;
+		return cbUpdate.isChecked();
 	}
-	
-	public void setCheck(boolean checked){
-		
-		if(isChecked()){
-			cbUpdate.setChecked(false);
+	/**
+	 * 设置勾选状态
+	 * @param checked
+	 */
+	public void setChecked(boolean checked){
+		cbUpdate.setChecked(checked);
+		if(checked){
+			setDesc(descOn);
 		}else{
-			cbUpdate.setChecked(true);
+			setDesc(descOff);
 		}
 	}
 }

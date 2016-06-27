@@ -39,6 +39,9 @@ public class HomeActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, 
 					int position, long id) {
 				switch (position) {
+				case 0:
+				
+				//设置中心
 				case 8:
 					Intent intent=new Intent(HomeActivity.this,SettingActivity.class);
 					startActivity(intent);
