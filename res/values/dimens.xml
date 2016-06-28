@@ -8,7 +8,7 @@
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_21">21sp</dimen>
-    <dimen name="text_size_huge">18sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
     
 	<!-- 通用布局高度 -->
     <dimen name="layout_height_50">50dp</dimen>
